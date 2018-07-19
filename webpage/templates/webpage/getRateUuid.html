@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>获取商户rateuuid（微信登录使用）</title>
+<style type="text/css">
+div.main
+{color:green;
+position:relative;
+top:20px;
+line-height: 40px;
+border: yellow solid thin;
+outline-style:dotted;
+outline-color:#00ff00;
+vertical-align:center}
+
+form{
+vertical-align:center
+}
+</style> 
+
+{% load static %}
+<link  rel="stylesheet" type="text/css" href="{% static 'webpage/jquery.jsonview.css' %}"/>
+<script src="{% static 'webpage/jquery-3.1.1.min.js' %}"></script>
+<script src="{% static 'webpage/jquery.jsonview.js' %}"></script>
+
+</head>
+<body>
+<div class="main">
+<form action="/web/getRateUuid/" method="post">
+{% csrf_token %}
+{{ grforms.as_ul }}
+<li><input type="submit" value="提交查询"/></li>
+
+</form>
+
+</div>
+
+{% if result %}
+<script type="text/javascript">
+$(function(){
+	$("#json").JSONView({{ result|safe }});	
+})
+</script>
+{% endif %}
+
+<br>
+<br>
+<br>
+<br>
+<div id="json"></div>
+{% if result2 %}
+<h1>{{ result2 }}</h1>
+{% endif %}
+</body>
+</html>

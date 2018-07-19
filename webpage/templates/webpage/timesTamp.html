@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>unixtime转换</title>
+<style type="text/css">
+div.main
+{color:green;
+position:relative;
+top:20px;
+line-height: 40px;
+border: yellow solid thin;
+outline-style:dotted;
+outline-color:#00ff00;
+vertical-align:center}
+
+form{
+vertical-align:center
+}
+
+
+</style> 
+
+{% load static %}
+<script src="{% static 'webpage/jquery-3.1.1.min.js' %}"></script>
+<script type="text/javascript">
+$(function(){
+	$("input").blur(function(){
+		$("form").submit();
+	})
+})
+</script>
+</head>
+<body>
+
+<div class="main">
+<form action="/web/timesTamp/" method="post">
+{% csrf_token %}
+{{ ttforms.as_ul }}
+</form>
+</div>
+
+{% if result1 %}
+	<h1><p>unixtime转北京时间:</p>{{ result1 }}</h1>
+{% endif %}
+
+{% if result2 %}
+	<h1><p>北京时间转unixtime:</p>{{ result2 }}</h1>
+{% endif %}
+</body>
+</html>

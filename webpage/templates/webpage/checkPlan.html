@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>还款计划试算</title>
+</head>
+<style type="text/css">
+div.main
+{color:#FFF;
+position:relative;
+top:20px;
+line-height: 40px;
+border: yellow solid thin;
+outline-style:dotted;
+outline-color:#00ff00;
+vertical-align:center;
+background:#00A2CA;}
+
+form{
+vertical-align:center
+}
+
+
+</style> 
+
+<body>
+<div class='main'>
+<form action="/web/checkPlan/" method="post">
+{% csrf_token %}
+{{ cpforms.as_ul }}
+<li><input type="submit" value="进行试算" id="sub"/></li>
+
+{% if result %}
+	<h1>{{ result }}</h1>
+{% endif %}
+</form>
+</div>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>改变借款金额</title>
+<style type="text/css">
+div.main
+{color:green;
+position:relative;
+top:20px;
+line-height: 40px;
+border: yellow solid thin;
+outline-style:dotted;
+outline-color:#00ff00;
+vertical-align:center}
+
+form{
+vertical-align:center
+}
+</style> 
+
+{% load static %}
+<link  rel="stylesheet" type="text/css" href="{% static 'webpage/jquery.jsonview.css' %}"/>
+<script src="{% static 'webpage/jquery-3.1.1.min.js' %}"></script>
+<script src="{% static 'webpage/jquery.jsonview.js' %}"></script>
+
+</head>
+<body>
+<div class="main">
+<form action="/web/changeMoney/" method="post">
+{% csrf_token %}
+{{ cmforms.as_ul }}
+<li><input type="submit" value="提交修改金额"/></li>
+
+</form>
+
+</div>
+{% if result1 %}
+<script type="text/javascript">
+$(function(){
+	$("#json").JSONView({{ result1|safe }});	
+})
+</script>
+{% endif %}
+
+{% if result2 %}
+<script type="text/javascript">
+$(function(){
+	$("#json").JSONView({{ result2|safe }});	
+})
+</script>
+{% endif %}
+
+{% if result3 %}
+<script type="text/javascript">
+$(function(){
+	$("#json").JSONView({{ result3|safe }});	
+})
+</script>
+{% endif %}
+
+{% if result4 %}
+<h1> {{ result4 }}</h1>
+{% endif %}
+
+<br>
+<br>
+<br>
+<br>
+<div  id="json"></div>
+
+</body>
+</html>

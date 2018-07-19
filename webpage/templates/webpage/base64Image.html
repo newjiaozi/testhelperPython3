@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>base64Image转换</title>
+<style type="text/css">
+div.main
+{color:green;
+position:relative;
+top:20px;
+line-height: 40px;
+border: yellow solid thin;
+outline-style:dotted;
+outline-color:#00ff00;
+vertical-align:center}
+
+form{
+vertical-align:center
+}
+
+ 
+</style> 
+
+{% load static %}
+<script src="{% static 'webpage/jquery-3.1.1.min.js' %}"></script>
+<script src="{% static 'webpage/jquery.zclip.js' %}"></script>
+<script type="text/javascript">
+$(function(){
+	$("#id_image_file").change(function(){
+		$("#formfile").submit();
+	});
+});
+
+
+$(function(){ 
+	  $('#tocopy').zclip({ 
+	    path: "{% static 'webpage/ZeroClipboard.swf' %}", 
+	    copy: function(){//复制内容 
+			text_area = $("#copy1").text()
+
+	      	return text_area; 
+	    }, 
+	    afterCopy: function(){//复制成功 
+	      alert("复制成功")
+	    } 
+	  }); 
+	}); 
+</script>
+</head>
+<body>
+<div class="main">
+
+
+
+<form id="formfile" enctype="multipart/form-data" method="post" action="/web/base64Image/">
+{% csrf_token %}
+{{ biforms.as_ul }}
+
+</form>
+</div>
+
+
+<div class="main">
+{% if result1 %}
+<h1>结果：</h1>
+<a href="#" id="tocopy">点击复制结果</a>
+<textarex id="copy1" readonly="readonly" style="word-wrap:break-word;">{{ result1 }}</textarex>
+{% endif %}
+</div>
+
+
+</body>
+</html>

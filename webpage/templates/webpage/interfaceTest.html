@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>接口测试</title>
+<style type="text/css">
+div.main
+{color:green;
+position:relative;
+top:20px;
+line-height: 40px;
+border: yellow solid thin;
+outline-style:dotted;
+outline-color:#00ff00;
+vertical-align:center}
+
+form{
+vertical-align:center
+}
+
+
+</style> 
+{% load static %}
+<link  rel="stylesheet" type="text/css" href="{% static 'webpage/jquery.jsonview.css' %}"/>
+<script src="{% static 'webpage/jquery-3.1.1.min.js' %}"></script>
+<script src="{% static 'webpage/jquery.jsonview.js' %}"></script>
+
+</head>
+<body>
+
+<div class="main">
+<form action="/web/interfaceTest/" method="post">
+{% csrf_token %}
+{{ itforms.as_ul }}
+<li><input type="submit" value="请求接口"/></li>
+
+</form>
+</div>
+{% if result %}
+<script type="text/javascript">
+$(function(){
+	$("#json").JSONView({{ result|safe }});	
+	$("#expcol").show();
+})
+</script>
+{% endif %}
+
+<br>
+<br>
+<br>
+<br>
+{% if all_result %}
+
+{% for key,value in all_result.items %}
+	<tr><td>{{ key }}</td><td> : </td><td>{{ value }}</td></tr><br>
+{% endfor %}
+
+{% endif %}
+<br>
+<br>
+<br>
+<br>
+<div  id="json"></div>
+</body>
+</html>

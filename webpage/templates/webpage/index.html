@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>webpage index</title>
+<style type="text/css">
+div.main
+{color:green;
+position:relative;
+top:20px;
+line-height: 40px;
+border: yellow solid thin;
+outline-style:dotted;
+outline-color:#00ff00;
+vertical-align:center;
+background-color: black;}
+
+li{color:green;}
+
+
+ul#nav{ width:100%; height:60px; background:#00A2CA;margin:0 auto} 
+ul#nav li{display:inline; height:60px} 
+ul#nav li a{display:inline-block; padding:0 5px; height:60px; line-height:60px;
+ color:#FFF; font-family:"\5FAE\8F6F\96C5\9ED1"; font-size:16px} 
+ul#nav li a:hover{background:#0095BB}/*设置鼠标滑过或悬停时变化的背景颜色*/ 
+
+</style>
+
+
+{% load static %}
+<script src="{% static 'webpage/jquery-3.1.1.min.js' %}"></script>
+<script type="text/javascript">
+$(function(){
+	$("a").click(function(){
+		src_data = this.id;	
+		$("#inner").attr("src","/web/"+src_data+"/");
+
+	})
+});
+</script>
+</head>
+
+<body height="100%">
+
+{% if mainpage %}
+<ul id="nav">
+{% for i,j in mainpage.items  %}
+<li><a href="{{ i }}" id="{{ i }}" target="inner">{{ j }}</a></li>
+{% endfor %}
+{% else %}
+	<h1>没有可用的功能！</h1>
+{% endif %}
+</ul>
+<iframe frameborder="0"  marginheight="20px" src="/web/checkPlan/" id="inner" name="inner" style="width:100%;height:600px"></iframe>
+
+</body>
+</html>

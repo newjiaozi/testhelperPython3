@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>base64Image转换</title>
+<style type="text/css">
+div.main
+{color:green;
+position:relative;
+top:20px;
+line-height: 40px;
+border: yellow solid thin;
+outline-style:dotted;
+outline-color:#00ff00;
+vertical-align:center}
+
+form{
+vertical-align:center
+} 
+</style> 
+
+{% load static %}
+<script src="{% static 'webpage/jquery-3.1.1.min.js' %}"></script>
+
+<script type="text/javascript">
+
+</script>
+</head>
+<body>
+
+<div class="main">
+<form id="formfile"  method="post" action="/web/imageBase64/">
+{% csrf_token %}
+{{ ibforms.as_table }}
+<input type="submit" value="提交转换"/>
+</form>
+</div>
+
+<div class="main">
+{% if result %}
+<h1>结果：</h1>
+<img src="{% static 'webpage/tmp.png' %}"/>
+{% endif %}
+</div>
+
+</body>
+</html>

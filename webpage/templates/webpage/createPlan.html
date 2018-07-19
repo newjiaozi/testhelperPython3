@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>生成还款计划</title>
+<style type="text/css">
+div.main
+{color:green;
+position:relative;
+top:20px;
+line-height: 40px;
+border: yellow solid thin;
+outline-style:dotted;
+outline-color:#00ff00;
+vertical-align:center}
+
+form{
+vertical-align:center
+}
+</style> 
+</head>
+<body>
+<div class="main">
+<form action="/web/createPlan/" method="post">
+{% csrf_token %}
+{{ crforms.as_ul }}
+<li><input type="submit" value="生成计划"/></li>
+{% if result %}
+	<h1>{{ result }}</h1>
+{% endif %}
+</form>
+</div>
+</body>
+</html>

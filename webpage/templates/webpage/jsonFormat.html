@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Json格式化</title>
+<style type="text/css">
+
+.main{height: auto;border: 2px solid;margin: auto;}
+.left{float: left;width: 50%;height: 300px;}
+.right{float: left;width: 30%;height: 300px;}
+.left,#right{float:left;}
+
+</style>
+
+{% load static %}
+<link  rel="stylesheet" type="text/css" href="{% static 'webpage/jquery.jsonview.css' %}"/>
+<script src="{% static 'webpage/jquery-3.1.1.min.js' %}"></script>
+<script src="{% static 'webpage/jquery.jsonview.js' %}"></script>
+
+<script type="text/javascript">
+
+$(function(){
+	$("#btn").click(function(){
+		var json = $("#data").val();
+		$("#json").JSONView(json);
+	});
+	$("#expcol").click(function(){
+		$("#json").JSONView("toggle");
+	});
+});
+
+
+</script>
+</head>
+
+
+<body>
+<button id="btn">格式化JSON</button>
+<button id="expcol">展开/折叠</button>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+
+<div class="main">
+<div class="left">
+<textarea id="data" style="width:98%;height:300px;">粘贴需要格式化的JSON</textarea>
+</div>
+<div id="json" class="right">
+</div>
+</div>
+</body>
+</html>
